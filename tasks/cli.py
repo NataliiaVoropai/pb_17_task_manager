@@ -30,7 +30,23 @@ def handle_action():
 
 
 def handle_interrupt():
-    user_input = input("\nDo you want to export tasks (y/n)?")
-    if user_input == "y":
-        save_to_file(get_all_tasks(), "export")
-        return True
+    while True:
+        user_input = input("\nWould you like to quit (y/n)? ").lower()
+        if user_input == "y":
+            while True:
+                user_input = input("\nDo you want to export tasks (y/n)? ").lower()
+                if user_input == "y":
+                    print("Exporting tasks. Bye!")
+                    save_to_file(get_all_tasks(), "export")
+                    return True
+                elif user_input == "n":
+                    print("Not exporting tasks. Bye!")
+                    return True
+                else:
+                    print("Invalid input for exporting tasks. Please enter 'y'"
+                          "for yes or 'n' for no.")
+        elif user_input == "n":
+            print("Continuing the program")
+            return False
+        else:
+            print("Invalid input. Please enter 'y' for yes or 'n' for no.")
