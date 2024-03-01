@@ -16,4 +16,9 @@ def mark_task_completed(index: int, completed: bool) -> None:
 
 
 def get_all_tasks() -> List[Tuple[int, str, bool]]:
-    return [(i, task["title"], task["completed"]) for i, task in enumerate(_DB)]
+    return [
+        "[{}] {} - {}".format(
+            '✔️' if task['completed'] else ' ', i, task['title']
+        )
+        for i, task in enumerate(_DB)
+    ]
